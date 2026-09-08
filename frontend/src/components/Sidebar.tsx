@@ -11,13 +11,13 @@ export const Sidebar = () => {
     return (
         <>
         <button className="btn-abrir" onClick={toggleSidebar}>
-            ☰ Menú
-        </button>
+            ☰ 
+        </button><h1 className="titulo">FoodStore</h1>
         {Abierto && <div className="menu" onClick={toggleSidebar}></div>}
 
         <aside className={`sidebar ${Abierto ? 'open' : ''}`}>
         <div className="sidebar-header">
-            <h2 className="titulo">FoodStore</h2>
+            <h2 className="titulo-menu">FoodStore</h2>
             <button className="btn-cerrar" onClick={toggleSidebar}>
                 x
             </button>
