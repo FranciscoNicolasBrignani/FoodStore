@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const mainContent = document.createElement('main');
     mainContent.id = 'main-content';
-
+    
     //estructura en el DOM
     root.appendChild(headerContainer);
     root.appendChild(mainContent);
