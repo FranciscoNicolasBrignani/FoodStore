@@ -44,7 +44,7 @@ export const renderSidebar = (container: HTMLElement): void => {
     { texto: 'Inicio', href: '#' },
     { texto: 'Catálogo', href: '#catalogo' },
     { texto: 'Mis Pedidos', href: '#pedidos' },
-    { texto: 'Carrito', href: '#cart' },
+    { texto: 'Carrito', href: '/src/pages/cart/cart.html' },
     { texto: 'Panel Admin', href: '#admin' },
   ];
 
