@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap');
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f0f2f5;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    min-height: 100vh;           
+    display: flex;               
+    justify-content: center;     
+    align-items: center;            
+    background-color: #eceff1;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.logo-inicio{
+    height: 200px;
+}
+
+h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(38, 38, 38);
+    font-size: 32px;
+}
+
+.subtitulo{
+    margin: 10px;
+}
+
+
+.container-inicio{
+    display: flex;
+    padding: 40px 50px;
+    align-items: center;
+    background-color: #ffffff;
+    width: 100%;
+    border-radius: 10px;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 9px rgb(200, 199, 199);
+    max-width: 380px;
+    box-sizing: border-box;
+}
+
+.btn-iniciar{
+    text-align: center;
+    align-items: center;
+    background-color: #15bc81;
+    margin: 25px;
+    padding: 20px;
+    border-radius: 10px;
+}

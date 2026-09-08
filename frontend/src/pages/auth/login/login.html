@@ -4,14 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./login.css">
     <title>Document</title>
 </head>
 
 <body>
-    <h1> Login</h1>
-
-    <form id="form">
-
+    <form id="form" class="container">
+        <h2 class="titulo-login"> Login</h2>
         <div>
             <label for="email">Email</label>
             <input type="email" id="email" name="email" autocomplete="off" placeholder="example@example.com">
@@ -29,8 +28,8 @@
             </select>
         </div>
 
-        <button type="submit">Ingresar</button>
-
+        <button type="submit" class="boton">Ingresar</button>
+        <p>¿No tenes cuenta?, <a href="../registro/registro.html" class="register">Registrate</a> aca!</p>
     </form>
 
     <script type="module" src="./login.ts"></script>

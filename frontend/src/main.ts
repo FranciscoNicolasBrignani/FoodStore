@@ -1,6 +1,6 @@
 import '../src/pages/client/home.css';
 import { renderSidebar } from './components/Sidebar';
-import { renderHome } from './pages/client/Home';
+import { renderHome } from './pages/client/home';
 
 // Esperamos a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {

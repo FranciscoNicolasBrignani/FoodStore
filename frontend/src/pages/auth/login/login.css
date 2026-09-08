@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap');
+
 :root { --color-primario: #ff6347; --color-fondo: #f0f0f0; --color-texto: #333; --color-blanco: #fff; --color-borde: #ddd; --color-focus: #ff4500; 
 }
 
 body{
     background-color: #f0f2f5;
-    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     min-height: 100vh;           
     display: flex;               
@@ -12,8 +13,10 @@ body{
     background-color: #eceff1;
 }
 
-.title{
-    color: #ff6347;
+.titulo-login{
+    
+    font-family: 'Fredoka', sans-serif;
+    color: var(--color-primario);
     text-transform: uppercase;
 }
 
@@ -36,7 +39,6 @@ body{
 }
 
 .container{
-    display: flex;
     padding: 40px 50px;
     align-items: center;
     background-color: #ffffff;
@@ -49,21 +51,14 @@ body{
     box-sizing: border-box;
 }
 
-.login{
-    display: flex;
-    margin: auto;
-    flex-direction: column;
-    gap: 5px;
-    margin: 10px;
-    margin-bottom: 10px;
-}
-
 label{
     font-weight: bold;
-    margin-top: 10px;
+    color: var(--color-texto);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 input{
+    margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid #afafaf;
     padding: 10px;
@@ -79,7 +74,7 @@ input:focus{
 .boton{
     width: 100%;
     box-sizing: border-box;
-    background-color: #ff6347;
+    background-color: var(--color-primario);
     color: #ffffff;
     font-weight: bold;
     font-size: 14px;
@@ -94,18 +89,22 @@ input:focus{
     transition: background-color 0.2s ease;
 }
 
+p{
+    color: var(--color-texto);
+}
+
 .boton:hover{
     transition: background-color 0.2s ease;
-    background-color: #ff4500;
+    background-color: var(--color-focus);
 }
 
 .register{
-    color: #ff6347;
+    color: var(--color-primario);
     text-decoration: none;
 }
 
 .register:hover{
-    color: #ff4500;
+    color: var(--color-focus);
 }
 
 .register_form{

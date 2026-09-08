@@ -1,3 +1,3 @@
-export const navigate = (route: string) => {
-  window.location.href = route;
+export const navigate = (path: string): void => {
+  window.location.href = path;
 };

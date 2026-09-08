@@ -1,91 +1,72 @@
 import { categorias, PRODUCTS } from "../../data/data";
 import type { IProduct } from "../../type/product";
+import './home.css';
 
-// Manejador del evento Agregar
 const handleAgregar = (producto: IProduct): void => {
   alert(`¡Agregado con éxito: ${producto.nombre}!`);
 };
 
-// Función principal que renderiza el catálogo en el DOM
-export const renderHome = (container: HTMLElement): void => {
-  container.innerHTML = ""; // Limpia el contenedor
+const cargarCategorias = (): void => {
+  const container = document.getElementById("categorias-list");
+  if(!container) return;
 
-  // 1. Sección principal de catálogo
-  const catalogoSection = document.createElement("section");
-  catalogoSection.id = "catalogo";
-  catalogoSection.className = "catalogo";
-
-  // 2. Lista de Categorías
-  const categoriasUl = document.createElement("ul");
-  categoriasUl.className = "categorias-list";
-
-  const tituloCategorias = document.createElement("h2");
-  tituloCategorias.className = "titulo-categorias";
-  tituloCategorias.textContent = "Categorías";
-  categoriasUl.appendChild(tituloCategorias);
-
+  container.innerHTML = "";
   categorias.forEach((cate) => {
-    const divCate = document.createElement("div");
+    const li = document.createElement("li");
     const link = document.createElement("a");
     link.href = `#${cate.id}`;
     link.textContent = cate.nombre;
 
-    divCate.appendChild(link);
-    categoriasUl.appendChild(divCate);
+    li.appendChild(link);
+    container.appendChild(li);
   });
+};
 
-  // 3. Grid de Productos
-  const productosSection = document.createElement("section");
-  productosSection.className = "productos-grid";
 
-  const tituloProductos = document.createElement("h2");
-  tituloProductos.textContent = "Productos destacados";
-  productosSection.appendChild(tituloProductos);
+const cargarProductos = (): void => {
+  const container = document.getElementById("catalogo-container");
+  if(!container) return;
 
-  const containerCatalogo = document.createElement("div");
-  containerCatalogo.className = "container-catalogo";
-
-  PRODUCTS.forEach((producto) => {
-    const cardWrapper = document.createElement("div");
-
+  container.innerHTML = "";
+  PRODUCTS.forEach((productos) => {
+    const card = document.createElement("div");
     const box = document.createElement("div");
     box.className = "catalogo-box";
 
     const h3 = document.createElement("h3");
     h3.className = "titulo-producto";
-    h3.textContent = producto.nombre;
+    h3.textContent = productos.nombre;
 
     const img = document.createElement("img");
-    img.src = producto.imagen;
-    img.alt = "imagen-producto";
+    img.className = "imagen-producto";
+    img.src = productos.imagen;
+    img.alt = productos.nombre;
 
     const desc = document.createElement("p");
     desc.className = "desc-producto";
-    desc.textContent = producto.descripcion;
+    desc.textContent = productos.descripcion;
 
     const precio = document.createElement("p");
-    precio.className = "precio";
-    precio.textContent = `$${producto.precio}`;
+    precio.className = "precio-producto";
+    precio.textContent = `$${productos.precio}`;
 
     const btn = document.createElement("button");
     btn.textContent = "Agregar";
-    btn.addEventListener("click", () => handleAgregar(producto));
+    btn.addEventListener("click", () => handleAgregar(productos));
 
-    // Ensamblar la tarjeta de producto
     box.appendChild(h3);
     box.appendChild(img);
     box.appendChild(desc);
     box.appendChild(precio);
     box.appendChild(btn);
 
-    cardWrapper.appendChild(box);
-    containerCatalogo.appendChild(cardWrapper);
-  });
+    card.appendChild(box);
+    container.appendChild(card);
+  })
 
-  productosSection.appendChild(containerCatalogo);
+}
 
-  // 4. Inyectar todo al catálogo y al contenedor principal
-  catalogoSection.appendChild(categoriasUl);
-  catalogoSection.appendChild(productosSection);
-  container.appendChild(catalogoSection);
-};
+document.addEventListener("DOMContentLoaded", () => {
+  cargarCategorias();
+  cargarProductos();
+});

@@ -4,11 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodStore</title>
+    <link rel="stylesheet" href="/src/style.css" />
+    <link rel="stylesheet" href="./home.css" />
+    <title>FoodStore - Catalogo</title>
 </head>
 
 <body>
-    <div id="home-root"></div>
+    <main class="catalogo" id="catalogo">
+        <section class="categorias-container">
+            <h2 class="titulo-categorias">Categorías</h2>
+            <ul id="categorias-list" class="categorias-list"></ul>
+        </section>
+        <section class="productos-grid">
+            <h2>Productos destacados</h2>
+            <div id="catalogo-container" class="catalogo-container">
+            </div>
+        </section>
+    </main>
+    
     <script type="module" src="./home.ts"></script>
 </body>
 
