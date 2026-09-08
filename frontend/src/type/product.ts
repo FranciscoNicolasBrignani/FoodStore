@@ -1,4 +1,6 @@
-export interface Product {
+import type { ICategory } from "./categoria";
+
+export interface IProduct {
     id: number;
     eliminado: boolean;
     createdAt: string;
@@ -9,12 +11,4 @@ export interface Product {
     imagen: string;
     disponible: boolean;
     categorias: ICategory[];
-}
-
-export interface ICategory {
-    id: number;
-    eliminado: boolean,
-    createdAt: string,
-    nombre: string,
-    descripcion: string,
 }

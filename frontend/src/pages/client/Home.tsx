@@ -1,9 +1,9 @@
-import { categorias, PRODUCTS } from "../data/data";
-import type { Product } from "../type";
+import { categorias, PRODUCTS } from "../../data/data";
+import type { IProduct } from "../../type/product";
 
-export const Catalogo = () => {
+export const Home = () => {
     
-    const handleAgregar = (producto: Product): void => {
+    const handleAgregar = (producto: IProduct): void => {
         alert(`¡Agregado con éxito: ${producto.nombre}!`);
     };
 

@@ -1,7 +1,6 @@
 import './App.css';
-import { NavBar } from './components/NavBar';
-import { Hero } from './sections/Hero';
-import { Catalogo } from './sections/Catalogo';
+import { NavBar } from './components/Navbar';
+import { Home } from './pages/client/home';
 
 function App() {
 
@@ -9,8 +8,7 @@ function App() {
     <div>
       <NavBar />
       <main>
-        <Hero />
-        <Catalogo />
+        <Home />
       </main>
       <footer className="footer-class">
         © {new Date().getFullYear()} FoodStore - Francisco Nicolás Brignani

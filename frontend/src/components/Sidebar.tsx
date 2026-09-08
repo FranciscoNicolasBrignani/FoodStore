@@ -27,7 +27,7 @@ export const Sidebar = () => {
             <li><a href="#" onClick={toggleSidebar}>Inicio</a></li>
             <li><a href="#catalogo" onClick={toggleSidebar}>Catálogo</a></li>
             <li><a href="#pedidos" onClick={toggleSidebar}>Mis Pedidos</a></li>
-            <li><a href="#carrito" onClick={toggleSidebar}>Carrito</a></li>
+            <li><a href="#cart" onClick={toggleSidebar}>Carrito</a></li>
             <li><a href="#admin" onClick={toggleSidebar}>Panel Admin</a></li>
           </ul>
         </nav>

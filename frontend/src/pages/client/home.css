@@ -1,0 +1,13 @@
+.productos-grid{
+    background-color: rgb(136, 161, 153);
+    margin: 90px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.catalogo-box{
+    background-color: rgb(90, 121, 121);
+    margin: 10px;
+    padding: 15px;
+    border-radius: 10px;
+}

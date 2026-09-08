@@ -1,6 +1,6 @@
 // src/utils/data.ts
-import type { Product, ICategory } from "../type/index";
-
+import type { IProduct } from '../type/product';
+import type { ICategory } from '../type/categoria';
 
 
 export const categorias: ICategory[] = [
@@ -48,7 +48,7 @@ export const categorias: ICategory[] = [
   },
 ];
 
-export const PRODUCTS: Product[] = [
+export const PRODUCTS: IProduct[] = [
   {
     id: 1,
     eliminado: false,
