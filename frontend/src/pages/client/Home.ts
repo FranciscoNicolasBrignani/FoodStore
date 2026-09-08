@@ -1,7 +1,18 @@
 import { categorias, PRODUCTS } from "../../data/data";
 import type { IProduct } from "../../type/product";
 import './home.css';
+import { navigate } from "../../utils/navigate";
 
+const btnLogout = document.getElementById('btn-salir');
+
+  // 2. Evento para cerrar sesión
+  btnLogout?.addEventListener('click', () => {
+    localStorage.removeItem('userData');
+    navigate('/src/pages/auth/login/login.html');
+  });
+
+
+  //funcion boton agregar
 const handleAgregar = (producto: IProduct): void => {
   alert(`¡Agregado con éxito: ${producto.nombre}!`);
 };

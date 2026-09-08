@@ -1,6 +1,4 @@
 import '../src/pages/client/home.css';
-import { renderSidebar } from './components/Sidebar';
-import { renderHome } from './pages/client/home';
 
 // Esperamos a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,8 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     root.appendChild(headerContainer);
     root.appendChild(mainContent);
 
-    //Renderizamos vistas/módulos
-    renderSidebar(headerContainer);
-    renderHome(mainContent);
+  
   }
 });

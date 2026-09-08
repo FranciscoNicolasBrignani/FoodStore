@@ -8,15 +8,24 @@
     <link rel="stylesheet" href="./home.css" />
     <title>FoodStore - Catalogo</title>
 </head>
-
 <body>
+    <header class="header">
+        <img src="../../../public/favicon.png" alt="" class="logo">
+    <h1 class="titulo">FoodStore</h1>
+    <nav class="container-menu">
+      <a class="menu" href="/src/pages/client/home/home.html">Inicio</a>
+      <a class="menu" href="/src/pages/client/cart/cart.html">Carrito</a>
+    </nav>
+    <button id="btn-salir" class="btn-salir">Cerrar Sesión</button>
+    </header>
+
     <main class="catalogo" id="catalogo">
         <section class="categorias-container">
             <h2 class="titulo-categorias">Categorías</h2>
             <ul id="categorias-list" class="categorias-list"></ul>
         </section>
         <section class="productos-grid">
-            <h2>Productos destacados</h2>
+            <h2 class="titulo-productos">Productos destacados</h2>
             <div id="catalogo-container" class="catalogo-container">
             </div>
         </section>
