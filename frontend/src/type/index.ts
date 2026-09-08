@@ -1,13 +1,20 @@
-export interface Productos {
-    id: string;
+export interface Product {
+    id: number;
+    eliminado: boolean;
+    createdAt: string;
     nombre: string;
-    descripcion: string;
     precio: number;
+    descripcion: string;
+    stock: number;
     imagen: string;
-    categoria: string
+    disponible: boolean;
+    categorias: ICategory[];
 }
 
-export interface Categorias {
-    id: string;
-    nombre: string;
+export interface ICategory {
+    id: number;
+    eliminado: boolean,
+    createdAt: string,
+    nombre: string,
+    descripcion: string,
 }

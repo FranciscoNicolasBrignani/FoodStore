@@ -1,9 +1,9 @@
-import { CATEGORIAS, PRODUCTOS } from "../data/tiendaData";
-import type { Productos } from "../type";
+import { categorias, PRODUCTS } from "../data/data";
+import type { Product } from "../type";
 
 export const Catalogo = () => {
     
-    const handleAgregar = (producto: Productos): void => {
+    const handleAgregar = (producto: Product): void => {
         alert(`¡Agregado con éxito: ${producto.nombre}!`);
     };
 
@@ -11,7 +11,7 @@ export const Catalogo = () => {
         <section id="catalogo" className="catalogo">
             <ul className="categorias-list">
                 <h2 className="titulo-categorias">Categorias</h2>
-                {CATEGORIAS.map((cate) => (
+                {categorias.map((cate) => (
                     <div key={cate.id}>
                         <a href={`#${cate.id}`}>{cate.nombre}</a>
                     </div>
@@ -20,7 +20,7 @@ export const Catalogo = () => {
             <section className="productos-grid">
                 <h2>Productos destacados</h2>
                 <div className="container-catalogo">
-                    {PRODUCTOS.map((productos) => (
+                    {PRODUCTS.map((productos) => (
                         <div key={productos.id}>
                             <div className="catalogo-box">
                                 <h3 className="titulo-producto">{productos.nombre}</h3>
