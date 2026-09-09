@@ -1,5 +1,5 @@
-import { categorias, PRODUCTS } from "../../data/data";
-import type { IProduct } from "../../type/product";
+import { categorias, itemsCarrito, PRODUCTS, guardarCarrito } from "../../data/data";
+import type { Icarrito } from "../../type/Icarrito";
 import './home.css';
 import { navigate } from "../../utils/navigate";
 
@@ -13,8 +13,14 @@ const btnLogout = document.getElementById('btn-salir');
 
 
   //funcion boton agregar
-const handleAgregar = (producto: IProduct): void => {
-  alert(`¡Agregado con éxito: ${producto.nombre}!`);
+const agregarCarrito = (nuevoProducto: Icarrito): void => {
+  const productoExistente = itemsCarrito.find(item => item.id === nuevoProducto.id);
+  if(productoExistente){
+    productoExistente.cantidad += 1;
+  }else {
+    itemsCarrito.push({...nuevoProducto, cantidad: nuevoProducto.cantidad || 1 });
+  }
+  guardarCarrito();
 };
 
 const cargarCategorias = (): void => {
@@ -63,7 +69,10 @@ const cargarProductos = (): void => {
 
     const btn = document.createElement("button");
     btn.textContent = "Agregar";
-    btn.addEventListener("click", () => handleAgregar(productos));
+    btn.addEventListener("click", () => {
+      agregarCarrito({...productos, cantidad: 1});
+      alert(`${productos.nombre} agregado al carrito!`);
+    })
 
     box.appendChild(h3);
     box.appendChild(img);
@@ -77,7 +86,5 @@ const cargarProductos = (): void => {
 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
   cargarCategorias();
   cargarProductos();
-});

@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap');
+
+*{
+  margin: 0;
+}
+
+.logo{
+  display: inline-flex;
+  margin-left: 20px;
+  margin-right: -19px;
+  height: 30px;
+}
+
+.container-menu{
+  display: inline-flex;
+  margin: 20px;
+  margin-left: 900px;
+}
+
+.menu{
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+
+.menu:hover{
+  color: rgb(22, 131, 33);
+}
+
+.titulo{
+  display: inline-flex;
+    font-family: 'Fredoka', sans-serif;
+    color: rgb(22, 131, 33);
+    text-transform: uppercase;
+    margin: 20px;
+}
+
+.btn-salir{
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 1px solid black;
+}
+
+.btn-salir:hover{
+  cursor: pointer;
+  background-color: #b4b4b4;
+}
+
+.catalogo {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.titulo-categorias, .titulo-productos, p, h3{
+ font-family: Arial, Helvetica, sans-serif;
+}
+
+.categorias-list {
+  list-style: none;
+  padding: 0;
+}
+
+.categorias-list a {
+  display: block;
+  padding: 0.5rem 0;
+  color: #333;
+  text-decoration: none;
+}
+
+.categorias-list a:hover {
+  color: rgb(22, 131, 33);
+}
+
+.container-catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.catalogo-box {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.catalogo-box img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.catalogo-box button {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.catalogo-box button:hover {
+  background-color: #059669;
+}

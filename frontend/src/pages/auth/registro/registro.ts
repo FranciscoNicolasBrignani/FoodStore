@@ -1,4 +1,4 @@
-import type { RUser } from "../../../types/IUser";
+import type { RUser } from "../../../type/IUser";
 
 const form = document.getElementById("form_registro") as HTMLFormElement;
 const registerEmail = document.getElementById("email") as HTMLInputElement;
