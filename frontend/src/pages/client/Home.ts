@@ -71,7 +71,7 @@ const cargarProductos = (): void => {
     btn.textContent = "Agregar";
     btn.addEventListener("click", () => {
       agregarCarrito({...productos, cantidad: 1});
-      alert(`${productos.nombre} agregado al carrito!`);
+      
     })
 
     box.appendChild(h3);

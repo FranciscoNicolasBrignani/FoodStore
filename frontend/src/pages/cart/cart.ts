@@ -12,12 +12,13 @@ btnLogout?.addEventListener('click', () => {
 
 const carritoCompras = () => {
     const container = document.getElementById("carrito");
+
     if (!container) return;
 
     container.innerHTML = "";
 
     if (itemsCarrito.length === 0) {
-        container.innerHTML = "<p>El carrito esta vacio</p>";
+        container.innerHTML = `<p class="carrito-vacio">El carrito esta vacio</p>`;
     }
 
     let total = 0;
@@ -34,16 +35,15 @@ const carritoCompras = () => {
         <div class="cart-item-info">
         <h3>${producto.nombre}</h3>
         <p>${producto.descripcion}</p>
-        <p>${producto.precio}</p>
-        <p>Subtotal: $${subtotal}</p>
+        <p>$${producto.precio}</p>
+        <p>Cantidad: ${producto.cantidad}</p><p>Subtotal: $${subtotal.toFixed(2)}</p>
         </div>
         <div class="cart-items-acciones">
         <button class="btn-restar">-</button>
         <button class="btn-sumar">+</button>
         <button class="btn-eliminar">Eliminar</button>
         </div>
-        <span>Total: $${total}</span>
-        `;
+        `;      
 
         card.querySelector(".btn-restar")?.addEventListener("click", () => {
             cambiarCantidad(producto.id, -1);
@@ -56,9 +56,14 @@ const carritoCompras = () => {
         card.querySelector(".btn-eliminar")?.addEventListener("click", () => {
             eliminarProducto(producto.id);
         });
-
-        container.appendChild(card);
+        container.appendChild(card);        
     });
+
+    const PrecioTotal = document.createElement("span");
+        PrecioTotal.className = "precio-final"
+        PrecioTotal.innerHTML = `
+        <span>Total ${total.toFixed(2)}</span>`; 
+        container.appendChild(PrecioTotal);
 
     const cambiarCantidad = (id: number, cambio: number): void => {
         const producto = itemsCarrito.find(item => item.id === id);
