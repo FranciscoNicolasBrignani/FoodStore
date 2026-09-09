@@ -108,7 +108,7 @@
   background-color: #ffffff;
 }
 
-.catalogo-box button {
+.catalogo-box button, .btn-buscar {
   background-color: #10b981;
   color: white;
   border: none;

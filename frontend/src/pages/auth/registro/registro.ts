@@ -10,7 +10,7 @@ let users: RUser[] = [];
 
 form.addEventListener("submit", (e: SubmitEvent) => {
     e.preventDefault();
-    
+
     const valueEmail = registerEmail.value;
     const valuePassword = registroPassword.value;
 

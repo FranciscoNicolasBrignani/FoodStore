@@ -1,5 +1,5 @@
-import type { IUser } from "../types/IUser";
-import type { Rol } from "../types/Rol";
+import type { IUser } from "../type/IUser";
+import type { Rol } from "../type/Rol";
 import { getUSer, removeUser } from "./localStorage";
 import { navigate } from "./navigate";
 

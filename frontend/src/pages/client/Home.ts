@@ -5,27 +5,27 @@ import { navigate } from "../../utils/navigate";
 
 const btnLogout = document.getElementById('btn-salir');
 
-  // 2. Evento para cerrar sesión
-  btnLogout?.addEventListener('click', () => {
-    localStorage.removeItem('userData');
-    navigate('/src/pages/auth/login/login.html');
-  });
+// 2. Evento para cerrar sesión
+btnLogout?.addEventListener('click', () => {
+  localStorage.removeItem('userData');
+  navigate('/src/pages/auth/login/login.html');
+});
 
 
-  //funcion boton agregar
+//funcion boton agregar
 const agregarCarrito = (nuevoProducto: Icarrito): void => {
   const productoExistente = itemsCarrito.find(item => item.id === nuevoProducto.id);
-  if(productoExistente){
+  if (productoExistente) {
     productoExistente.cantidad += 1;
-  }else {
-    itemsCarrito.push({...nuevoProducto, cantidad: nuevoProducto.cantidad || 1 });
+  } else {
+    itemsCarrito.push({ ...nuevoProducto, cantidad: nuevoProducto.cantidad || 1 });
   }
   guardarCarrito();
 };
 
-const cargarCategorias = (): void => {
+const GetCategories = (): void => {
   const container = document.getElementById("categorias-list");
-  if(!container) return;
+  if (!container) return;
 
   container.innerHTML = "";
   categorias.forEach((cate) => {
@@ -36,18 +36,63 @@ const cargarCategorias = (): void => {
 
     li.appendChild(link);
     container.appendChild(li);
-  });
-};
 
-/*filtrar por categorias*/
+    link.addEventListener("click", () => {
+      const product = PRODUCTS;
+      const productoFiltrado = product.filter((producto) => {
+
+        const idProducto = producto.categorias;
+        const idEncontrado = idProducto.some((categorias) => categorias.id === cate.id);
+
+        return idEncontrado
+      })
+      renderizarProductos(productoFiltrado);
+    })
+  });
+
+};
 
 
 const cargarProductos = (): void => {
+  renderizarProductos(PRODUCTS);
+}
+
+const renderizarProductos = (listaProductos: typeof PRODUCTS): void => {
+
   const container = document.getElementById("catalogo-container");
-  if(!container) return;
+  if (!container) return;
 
   container.innerHTML = "";
-  PRODUCTS.forEach((productos) => {
+  
+  /*Barra de busqueda*/
+  const barra = document.createElement("div");
+  const search = document.createElement("input");
+  const btnbuscar = document.createElement("button");
+
+  btnbuscar.textContent = "Buscar";
+  btnbuscar.className = "btn-buscar";
+  search.className = "barra-busqueda";
+  container.innerHTML = `
+      <p class="text-buscar">Buscar producto</p> `;  
+  
+  btnbuscar.addEventListener("click", () => {
+    
+    if(search.value === "Pizzas"){
+      console.log(`DICE: ${search.value}`);
+    }
+  })
+
+
+  barra.appendChild(search);
+  barra.appendChild(btnbuscar);
+  container.appendChild(barra);
+
+
+  
+
+/*fin barra*/
+
+  listaProductos.forEach((productos) => {
     const card = document.createElement("div");
     const box = document.createElement("div");
     box.className = "catalogo-box";
@@ -72,8 +117,7 @@ const cargarProductos = (): void => {
     const btn = document.createElement("button");
     btn.textContent = "Agregar";
     btn.addEventListener("click", () => {
-      agregarCarrito({...productos, cantidad: 1});
-      
+      agregarCarrito({ ...productos, cantidad: 1 });
     })
 
     box.appendChild(h3);
@@ -88,5 +132,7 @@ const cargarProductos = (): void => {
 
 }
 
-  cargarCategorias();
-  cargarProductos();
+
+cargarProductos();
+GetCategories();
+

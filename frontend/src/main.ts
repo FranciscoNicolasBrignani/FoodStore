@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //estructura en el DOM
     root.appendChild(headerContainer);
     root.appendChild(mainContent);
-
   
   }
 });

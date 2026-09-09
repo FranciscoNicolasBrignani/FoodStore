@@ -1,4 +1,4 @@
-import type { IUser } from "../types/IUser";
+import type { IUser } from "../type/IUser";
 
 export const saveUser = (user: IUser) => {
   const parseUser = JSON.stringify(user);
@@ -10,3 +10,5 @@ export const getUSer = () => {
 export const removeUser = () => {
   localStorage.removeItem("userData");
 };
+
+
