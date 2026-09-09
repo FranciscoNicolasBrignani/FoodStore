@@ -39,6 +39,8 @@ const cargarCategorias = (): void => {
   });
 };
 
+/*filtrar por categorias*/
+
 
 const cargarProductos = (): void => {
   const container = document.getElementById("catalogo-container");
