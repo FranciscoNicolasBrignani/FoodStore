@@ -28,12 +28,20 @@ const GetCategories = (): void => {
   if (!container) return;
 
   container.innerHTML = "";
+  const todas = document.createElement("a"); 
+    todas.href=`/src/pages/client/home.html`;
+    todas.textContent = "Todos los productos";
+    todas.className = "categorias";
+    container.appendChild(todas);
+
   categorias.forEach((cate) => {
     const li = document.createElement("li");
     const link = document.createElement("a");
+
     link.href = `#${cate.id}`;
     link.textContent = cate.nombre;
-
+    link.className = "categorias";
+    
     li.appendChild(link);
     container.appendChild(li);
 

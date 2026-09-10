@@ -81,6 +81,14 @@
     margin: 15px;
 }
 
+.categorias{
+  transition: transform 0.3s ease;
+}
+
+.categorias:hover{
+  transform: scale(1) rotate(2deg);
+}
+
 .desc-producto, .titulo-producto, .precio-producto{
   margin: 4px;
   font-family: Arial, Helvetica, sans-serif;

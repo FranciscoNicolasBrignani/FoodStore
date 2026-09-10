@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./registro.css">
     <title>Document</title>
 </head>
 
 <body>
-    <h1> Registro</h1>
-    <form id="form_registro">
+    <form id="form_registro" class="container">
         <div>
+        <h1 class="titulo-registro">Registro</h1>
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="jose@ejemplo.com" required>
         </div>
@@ -18,7 +19,8 @@
             <label for="password">Contraseña</label>
             <input type="password" id="password" name="password" autocomplete="new-password" placeholder="contraseña" required>
         </div>
-        <button type="submit" >Resgistarse</button>
+        <button type="submit" class="boton" >Resgistarse</button>
+        <p>¿Ya tenes cuenta?, <a href="../login/login.html" class="login">loguéate</a> aca!</p>
     </form>
     <script type="module" src="./registro.ts"></script>
 </body>

@@ -25,7 +25,7 @@ form.addEventListener("submit", (e: SubmitEvent) => {
   
   const parseUser = JSON.stringify(user);
   localStorage.setItem("userData", parseUser);
-
+  
   const usuarioEncontrado = users.find(
     (user) => user.email === valueEmail && user.password === valuePassword
   );
