@@ -65,12 +65,20 @@
   object-fit: cover;
 }
 
-.titulo-categorias, .titulo-productos{
+.titulo-productos{
     display: inline-flex;
     font-family: 'Fredoka', sans-serif;
     color: rgb(91, 104, 92);
     text-transform: uppercase;
-    margin: 20px;
+    margin: 15px;
+}
+
+.titulo-categorias{
+    display: inline-flex;
+    font-family: 'Fredoka', sans-serif;
+    color: rgb(91, 104, 92);
+    text-transform: uppercase;
+    margin: 15px;
 }
 
 .desc-producto, .titulo-producto, .precio-producto{
@@ -116,6 +124,13 @@
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s ease;
+}
+
+.barra-busqueda{
+  border-radius: 4px;
+  padding: 3px;
+  border: 1px solid black;
+  margin-right: 15px;
 }
 
 button:hover {

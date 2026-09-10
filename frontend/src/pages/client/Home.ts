@@ -63,34 +63,45 @@ const renderizarProductos = (listaProductos: typeof PRODUCTS): void => {
   if (!container) return;
 
   container.innerHTML = "";
-  
-  /*Barra de busqueda*/
+
   const barra = document.createElement("div");
   const search = document.createElement("input");
   const btnbuscar = document.createElement("button");
-
   btnbuscar.textContent = "Buscar";
+
   btnbuscar.className = "btn-buscar";
   search.className = "barra-busqueda";
+
   container.innerHTML = `
-      <p class="text-buscar">Buscar producto</p> `;  
-  
+      <p class="text-buscar">Buscar producto</p> `;
+
+  const buscar = (): void => {
+    const product = PRODUCTS;
+    const buscarProducto = product.filter((producto) => {
+
+      const inputUsuario = search.value.toLowerCase();
+      let nombreProducto = producto.nombre.toLowerCase().includes(inputUsuario);
+
+      const inputBusqueda = nombreProducto;
+
+      return inputBusqueda;
+
+    })
+    renderizarProductos(buscarProducto);
+  }
   btnbuscar.addEventListener("click", () => {
-    
-    if(search.value === "Pizzas"){
-      console.log(`DICE: ${search.value}`);
-    }
+    buscar();
   })
 
+  search.addEventListener("keydown", (Evento) => {
+    if (Evento.key === 'Enter') {
+      buscar();
+    }
+  })
 
   barra.appendChild(search);
   barra.appendChild(btnbuscar);
   container.appendChild(barra);
-
-
-  
-
-/*fin barra*/
 
   listaProductos.forEach((productos) => {
     const card = document.createElement("div");
