@@ -34,8 +34,7 @@ const carritoCompras = () => {
         <img src = "${producto.imagen}" alt= "${producto.nombre}" class="item-img"> 
         <div class="cart-item-info">
         <h3>${producto.nombre}</h3>
-        <p>${producto.descripcion}</p>
-        <p>$${producto.precio}</p>
+        <p>Precio unidad: $${producto.precio}</p>
         <p>Cantidad: ${producto.cantidad}</p><p>Subtotal: $${subtotal.toFixed(2)}</p>
         </div>
         <div class="cart-items-acciones">
