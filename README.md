@@ -28,6 +28,24 @@ Plataforma web desarrollada como proyecto académico para la **Universidad Tecno
 
 ---
 
+## Instrucciones para ejecutar el código
+## Pasos: 
+### 1er: debemos tener pnpm y Node.js
+### 2do: Clonamos el repositorio
+**Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/FranciscoNicolasBrignani/FoodStore
+```
+### 3er: Abrimos vs Code (por ejemplo)
+### 4to: Abrimos la terminal y colocamos el siguiente comando
+   ```bash
+   cd frontend
+   pnpm dev
+```
+### 5to: Copiamos el link de localhost y lo pegamos en el navegador
+
+---
+
 ## Tecnologías Utilizadas
 
 - **HTML5:** Estructura de la aplicación.
