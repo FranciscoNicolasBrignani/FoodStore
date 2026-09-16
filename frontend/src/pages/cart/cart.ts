@@ -49,7 +49,7 @@ const carritoCompras = () => {
         });
 
         card.querySelector(".btn-sumar")?.addEventListener("click", () => {
-            cambiarCantidad(producto.id, 1);
+            cambiarCantidad(producto.id, +1);
         });
 
         card.querySelector(".btn-eliminar")?.addEventListener("click", () => {
