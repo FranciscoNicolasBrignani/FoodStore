@@ -1,6 +1,6 @@
-import { guardarCart, itemsCart } from "../../../data/data";
 import type { ICartItem } from "../../../type/categoria";
 import { navigate } from "../../../utils/navigate";
+import {getCart, cambiarCantidad, eliminarProducto } from '../../../utils/cart';
 import '../cart/cart.css';
 
 // 1. Manejo del cierre de sesión
@@ -17,8 +17,11 @@ const cartCompras = () => {
 
     container.innerHTML = "";
 
+    const itemsCart: ICartItem[] = getCart();
+
     if (itemsCart.length === 0) {
         container.innerHTML = `<p class="carrito-vacio">El carrito esta vacio</p>`;
+        return;
     }
 
     let total = 0;
@@ -44,16 +47,23 @@ const cartCompras = () => {
         </div>
         `;      
 
-        card.querySelector(".btn-restar")?.addEventListener("click", () => {
+        const btnRestar = card.querySelector(".btn-restar");
+        const btnSumar = card.querySelector(".btn-sumar");
+        const btnEliminar = card.querySelector(".btn-eliminar");
+
+        btnRestar?.addEventListener("click", () => {
             cambiarCantidad(producto.id, -1);
+            cartCompras();
         });
 
-        card.querySelector(".btn-sumar")?.addEventListener("click", () => {
+        btnSumar?.addEventListener("click", () => {
             cambiarCantidad(producto.id, +1);
+            cartCompras();
         });
 
-        card.querySelector(".btn-eliminar")?.addEventListener("click", () => {
+        btnEliminar?.addEventListener("click", () => {
             eliminarProducto(producto.id);
+            cartCompras();
         });
         container.appendChild(card);        
     });
@@ -64,29 +74,7 @@ const cartCompras = () => {
         <span>Total ${total.toFixed(2)}</span>`; 
         container.appendChild(PrecioTotal);
 
-    const cambiarCantidad = (id: number, cambio: number): void => {
-        const producto = itemsCart.find(item => item.id === id);
-        if (!producto) return;
-
-        producto.cantidad += cambio;
-
-        if (producto.cantidad <= 0) {
-            eliminarProducto(id);
-            return;
-        }
-
-        guardarCart();
-        cartCompras();
-    }
-
-    const eliminarProducto = (id: number): void => {
-        const index = itemsCart.findIndex(item => item.id === id);
-        if (index !== -1) {
-            itemsCart.splice(index, 1);
-            guardarCart();
-            cartCompras();
-        }
-    }
+    
 
 }
 

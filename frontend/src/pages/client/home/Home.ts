@@ -1,7 +1,8 @@
-import { categorias, itemsCart, PRODUCTS, guardarCart } from "../../../data/data";
+import { categorias, PRODUCTS} from "../../../data/data";
 import type { ICartItem } from "../../../type/categoria";
 import '../home/home.css';
 import { navigate } from "../../../utils/navigate";
+import { getCart, guardarCart } from "../../../utils/cart";
 
 const btnLogout = document.getElementById('btn-salir');
 
@@ -14,13 +15,14 @@ btnLogout?.addEventListener('click', () => {
 
 //funcion boton agregar
 const agregarCart = (nuevoProducto: ICartItem): void => {
+  const itemsCart = getCart();
   const productoExistente = itemsCart.find(item => item.id === nuevoProducto.id);
   if (productoExistente) {
     productoExistente.cantidad += 1;
   } else {
     itemsCart.push({ ...nuevoProducto, cantidad: nuevoProducto.cantidad || 1 });
   }
-  guardarCart();
+  guardarCart(itemsCart);
 };
 
 const GetCategories = (): void => {

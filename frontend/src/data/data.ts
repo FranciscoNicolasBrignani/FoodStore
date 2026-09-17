@@ -1,7 +1,6 @@
 // src/utils/data.ts
 import type { IProduct } from '../type/product';
 import type { ICategoria } from '../type/ICategoria';
-import type { ICartItem } from '../type/categoria';
 
 export const categorias: ICategoria[] = [
   {
@@ -295,13 +294,5 @@ export const PRODUCTS: IProduct[] = [
 export function getCategories(): ICategoria[] {
   return categorias.filter((c) => !c.eliminado);
 }
-
-export const itemsCart: ICartItem[] = JSON.parse(
-  localStorage.getItem("cart") || "[]"
-);
-
-export const guardarCart = (): void => {
-  localStorage.setItem("cart", JSON.stringify(itemsCart));
-};
 
 
