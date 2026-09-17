@@ -1,5 +1,5 @@
-import { guardarCarrito, itemsCarrito } from "../../../data/data";
-import type { ICartItem } from "../../../type/ICartItem";
+import { guardarCart, itemsCart } from "../../../data/data";
+import type { ICartItem } from "../../../type/categoria";
 import { navigate } from "../../../utils/navigate";
 import '../cart/cart.css';
 
@@ -10,20 +10,20 @@ btnLogout?.addEventListener('click', () => {
     navigate('/src/pages/auth/login/login.html');
 });
 
-const carritoCompras = () => {
-    const container = document.getElementById("carrito");
+const cartCompras = () => {
+    const container = document.getElementById("cart");
 
     if (!container) return;
 
     container.innerHTML = "";
 
-    if (itemsCarrito.length === 0) {
+    if (itemsCart.length === 0) {
         container.innerHTML = `<p class="carrito-vacio">El carrito esta vacio</p>`;
     }
 
     let total = 0;
 
-    itemsCarrito.forEach((producto: ICartItem) => {
+    itemsCart.forEach((producto: ICartItem) => {
         const subtotal = producto.cantidad * producto.precio;
         total += subtotal;
 
@@ -65,7 +65,7 @@ const carritoCompras = () => {
         container.appendChild(PrecioTotal);
 
     const cambiarCantidad = (id: number, cambio: number): void => {
-        const producto = itemsCarrito.find(item => item.id === id);
+        const producto = itemsCart.find(item => item.id === id);
         if (!producto) return;
 
         producto.cantidad += cambio;
@@ -75,19 +75,19 @@ const carritoCompras = () => {
             return;
         }
 
-        guardarCarrito();
-        carritoCompras();
+        guardarCart();
+        cartCompras();
     }
 
     const eliminarProducto = (id: number): void => {
-        const index = itemsCarrito.findIndex(item => item.id === id);
+        const index = itemsCart.findIndex(item => item.id === id);
         if (index !== -1) {
-            itemsCarrito.splice(index, 1);
-            guardarCarrito();
-            carritoCompras();
+            itemsCart.splice(index, 1);
+            guardarCart();
+            cartCompras();
         }
     }
 
 }
 
-carritoCompras();
+cartCompras();

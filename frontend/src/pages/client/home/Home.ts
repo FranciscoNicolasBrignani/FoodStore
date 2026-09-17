@@ -1,5 +1,5 @@
-import { categorias, itemsCarrito, PRODUCTS, guardarCarrito } from "../../../data/data";
-import type { ICartItem } from "../../../type/ICartItem";
+import { categorias, itemsCart, PRODUCTS, guardarCart } from "../../../data/data";
+import type { ICartItem } from "../../../type/categoria";
 import '../home/home.css';
 import { navigate } from "../../../utils/navigate";
 
@@ -13,14 +13,14 @@ btnLogout?.addEventListener('click', () => {
 
 
 //funcion boton agregar
-const agregarCarrito = (nuevoProducto: ICartItem): void => {
-  const productoExistente = itemsCarrito.find(item => item.id === nuevoProducto.id);
+const agregarCart = (nuevoProducto: ICartItem): void => {
+  const productoExistente = itemsCart.find(item => item.id === nuevoProducto.id);
   if (productoExistente) {
     productoExistente.cantidad += 1;
   } else {
-    itemsCarrito.push({ ...nuevoProducto, cantidad: nuevoProducto.cantidad || 1 });
+    itemsCart.push({ ...nuevoProducto, cantidad: nuevoProducto.cantidad || 1 });
   }
-  guardarCarrito();
+  guardarCart();
 };
 
 const GetCategories = (): void => {
@@ -136,7 +136,7 @@ const renderizarProductos = (listaProductos: typeof PRODUCTS): void => {
     const btn = document.createElement("button");
     btn.textContent = "Agregar";
     btn.addEventListener("click", () => {
-      agregarCarrito({ ...productos, cantidad: 1 });
+      agregarCart({ ...productos, cantidad: 1 });
     })
 
     box.appendChild(h3);

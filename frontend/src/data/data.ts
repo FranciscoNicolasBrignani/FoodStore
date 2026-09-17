@@ -1,7 +1,7 @@
 // src/utils/data.ts
 import type { IProduct } from '../type/product';
 import type { ICategoria } from '../type/ICategoria';
-import type { ICartItem } from '../type/ICartItem';
+import type { ICartItem } from '../type/categoria';
 
 export const categorias: ICategoria[] = [
   {
@@ -296,12 +296,12 @@ export function getCategories(): ICategoria[] {
   return categorias.filter((c) => !c.eliminado);
 }
 
-export const itemsCarrito: ICartItem[] = JSON.parse(
-  localStorage.getItem("carrito") || "[]"
+export const itemsCart: ICartItem[] = JSON.parse(
+  localStorage.getItem("cart") || "[]"
 );
 
-export const guardarCarrito = (): void => {
-  localStorage.setItem("carrito", JSON.stringify(itemsCarrito));
+export const guardarCart = (): void => {
+  localStorage.setItem("cart", JSON.stringify(itemsCart));
 };
 
 
