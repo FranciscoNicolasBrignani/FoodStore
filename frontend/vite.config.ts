@@ -13,10 +13,10 @@ export default defineConfig({
     rollupOptions: {
       input:{
         index: resolve(__dirname, '/index.html'),
-        home: resolve(__dirname, 'src/pages/client/home.html'),
+        home: resolve(__dirname, 'src/pages/client/home/home.html'),
         authRegistro: resolve(__dirname, 'src/pages/auth/registro/registro.html'),
         authLogin: resolve(__dirname, 'src/pages/auth/login/login.html'),
-        cart: resolve(__dirname, 'src/pages/cart/cart.html'),
+        cart: resolve(__dirname, 'src/pages/client/cart/cart.html'),
       },
     },
   },

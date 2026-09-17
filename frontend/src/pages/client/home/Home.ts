@@ -1,7 +1,7 @@
-import { categorias, itemsCarrito, PRODUCTS, guardarCarrito } from "../../data/data";
-import type { Icarrito } from "../../type/Icarrito";
-import './home.css';
-import { navigate } from "../../utils/navigate";
+import { categorias, itemsCarrito, PRODUCTS, guardarCarrito } from "../../../data/data";
+import type { Icarrito } from "../../../type/Icarrito";
+import '../home/home.css';
+import { navigate } from "../../../utils/navigate";
 
 const btnLogout = document.getElementById('btn-salir');
 
@@ -29,7 +29,7 @@ const GetCategories = (): void => {
 
   container.innerHTML = "";
   const todas = document.createElement("a"); 
-    todas.href=`/src/pages/client/home.html`;
+    todas.href=`/src/pages/client/home/home.html`;
     todas.textContent = "Todos los productos";
     todas.className = "categorias";
     container.appendChild(todas);

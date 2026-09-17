@@ -1,7 +1,7 @@
-import { guardarCarrito, itemsCarrito } from "../../data/data";
-import type { Icarrito } from "../../type/Icarrito";
-import { navigate } from "../../utils/navigate";
-import './cart.css';
+import { guardarCarrito, itemsCarrito } from "../../../data/data";
+import type { Icarrito } from "../../../type/Icarrito";
+import { navigate } from "../../../utils/navigate";
+import '../cart/cart.css';
 
 // 1. Manejo del cierre de sesión
 const btnLogout = document.getElementById('btn-salir');
