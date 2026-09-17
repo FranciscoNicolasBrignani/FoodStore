@@ -1,5 +1,5 @@
 import { guardarCarrito, itemsCarrito } from "../../../data/data";
-import type { Icarrito } from "../../../type/Icarrito";
+import type { ICartItem } from "../../../type/ICartItem";
 import { navigate } from "../../../utils/navigate";
 import '../cart/cart.css';
 
@@ -23,7 +23,7 @@ const carritoCompras = () => {
 
     let total = 0;
 
-    itemsCarrito.forEach((producto: Icarrito) => {
+    itemsCarrito.forEach((producto: ICartItem) => {
         const subtotal = producto.cantidad * producto.precio;
         total += subtotal;
 

@@ -1,5 +1,5 @@
 import { categorias, itemsCarrito, PRODUCTS, guardarCarrito } from "../../../data/data";
-import type { Icarrito } from "../../../type/Icarrito";
+import type { ICartItem } from "../../../type/ICartItem";
 import '../home/home.css';
 import { navigate } from "../../../utils/navigate";
 
@@ -13,7 +13,7 @@ btnLogout?.addEventListener('click', () => {
 
 
 //funcion boton agregar
-const agregarCarrito = (nuevoProducto: Icarrito): void => {
+const agregarCarrito = (nuevoProducto: ICartItem): void => {
   const productoExistente = itemsCarrito.find(item => item.id === nuevoProducto.id);
   if (productoExistente) {
     productoExistente.cantidad += 1;

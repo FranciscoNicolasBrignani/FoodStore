@@ -1,5 +1,5 @@
 import type { IProduct } from "./product";
 
-export interface Icarrito extends IProduct {
+export interface ICartItem extends IProduct {
     cantidad: number;
 }

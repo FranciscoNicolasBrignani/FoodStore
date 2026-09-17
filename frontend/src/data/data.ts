@@ -1,9 +1,9 @@
 // src/utils/data.ts
 import type { IProduct } from '../type/product';
-import type { ICategory } from '../type/categoria';
-import type { Icarrito } from '../type/Icarrito';
+import type { ICategoria } from '../type/ICategoria';
+import type { ICartItem } from '../type/ICartItem';
 
-export const categorias: ICategory[] = [
+export const categorias: ICategoria[] = [
   {
     id: 1,
     eliminado: false,
@@ -292,11 +292,11 @@ export const PRODUCTS: IProduct[] = [
 ]
  
 
-export function getCategories(): ICategory[] {
+export function getCategories(): ICategoria[] {
   return categorias.filter((c) => !c.eliminado);
 }
 
-export const itemsCarrito: Icarrito[] = JSON.parse(
+export const itemsCarrito: ICartItem[] = JSON.parse(
   localStorage.getItem("carrito") || "[]"
 );
 
