@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="orders.css">
+    <title>Mis pedidos</title>
+</head>
+<body>
+    <header class="header">
+        <img src="/favicon.png" alt="" class="logo">
+    <h1 class="titulo">FoodStore</h1>
+    <nav class="container-menu">
+      <a class="menu" href="/src/pages/store/home/home.html">Inicio</a>
+      <a class="menu" href="/src/pages/client/orders/Orders.html">Mis pedidos</a>
+      <a class="menu" href="/src/pages/store/cart/cart.html">Carrito</a>
+    </nav>
+    <button id="btn-salir" class="btn-salir">Cerrar Sesión</button>
+    </header>
+    <main class="orders-content">
+        <div class="orders-top-bar">
+            <h2>Mis Pedidos</h2>
+            <select id="filter-status" class="filter-select">
+                <option value="Todos">Todos</option>
+                <option value="PENDIENTE">Pendiente</option>
+                <option value="CONFIRMADO">Confirmado</option>
+                <option value="TERMINADO">Terminado</option>
+            </select>
+        </div>
+
+        
+        <div id="orders-container"></div>
+    </main>
+</body>
+</html>
