@@ -1,4 +1,4 @@
-import '../src/pages/client/home/home.css';
+import '../src/pages/store/home/home.css';
 
 // Esperamos a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
