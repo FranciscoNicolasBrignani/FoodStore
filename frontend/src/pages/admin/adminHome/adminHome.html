@@ -1,61 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <title>Panel de Administración - Food Store</title>
-    <link rel="stylesheet" href="../../style.css"> <!-- O tu ruta de estilos -->
+    <title>Panel Admin - Food Store</title>
+    <link rel="stylesheet" href="./adminHome.css">
 </head>
-<body class="admin-body">
-    <div class="admin-layout">
-        <!-- Sidebar de Navegación -->
-        <aside class="sidebar">
-            <h2>Administración</h2>
-            <nav>
-                <a href="/src/pages/admin/adminHome/adminHome.html" class="active">Dashboard</a>
-                <a href="/src/pages/admin/categories/categories.html">Categorías</a>
-                <a href="/src/pages/admin/products/products.html">Productos</a>
-                <a href="/src/pages/admin/orders/orders.html">Pedidos</a>
-                <a href="/src/pages/store/home/home.html">Ver Tienda</a>
+
+<body>
+    <header class="header">
+            <img src="/favicon.png" alt="" class="logo">
+            <h2 class="titulo">FoodStore - Admin</h2>
+            <nav class="container-menu">
+                <a class="menu" href="/src/pages/admin/adminHome/adminHome.html" class="active">Dashboard</a>
+                <a class="menu" href="/src/pages/admin/categories/categories.html">Categorías</a>
+                <a class="menu" href="/src/pages/admin/products/products.html">Productos</a>
+                <a class="menu" href="/src/pages/admin/orders/orders.html">Pedidos</a>
+                <a class="menu" href="/src/pages/store/home/home.html">Ver Tienda</a>
             </nav>
             <button id="btn-salir" class="btn-salir">Cerrar Sesión</button>
-        </aside>
+        
+        <h1>Panel de Administración</h1>
+    </header>
+    <main class="main-content">
+        <section class="stats-grid">
+            <div class="stat-card">
+                <h3>Categorías</h3>
+                <p id="stat-categorias">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Productos</h3>
+                <p id="stat-productos">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Pedidos</h3>
+                <p id="stat-pedidos">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Disponibles</h3>
+                <p id="stat-disponibles">0</p>
+            </div>
+        </section>
 
-        <!-- Contenido Principal -->
-        <main class="main-content">
-            <header>
-                <h1>Panel de Administración</h1>
-            </header>
 
-            <!-- 4 Tarjetas de Estadísticas -->
-            <section class="stats-grid">
-                <div class="stat-card">
-                    <h3>Categorías</h3>
-                    <p id="stat-categorias">0</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Productos</h3>
-                    <p id="stat-productos">0</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Pedidos</h3>
-                    <p id="stat-pedidos">0</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Disponibles</h3>
-                    <p id="stat-disponibles">0</p>
-                </div>
-            </section>
+        <section class="summary-panel">
+            <h2>Resumen Rápido</h2>
+            <div id="summary-content">
 
-            <!-- Panel de Resumen -->
-            <section class="summary-panel">
-                <h2>Resumen Rápido</h2>
-                <div id="summary-content">
-                    <!-- Se llena dinámicamente con TypeScript -->
-                </div>
-            </section>
-        </main>
+            </div>
+        </section>
+    </main>
     </div>
 
     <script type="module" src="./adminHome.ts"></script>
 </body>
+
 </html>
