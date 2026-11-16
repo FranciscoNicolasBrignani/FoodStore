@@ -1,3 +1,4 @@
+// --- INTERFACES OBLIGATORIAS ---
 interface Categoria {
   id: number;
   nombre: string;
@@ -40,14 +41,15 @@ interface Pedido {
   usuarioDto: UsuarioDto;
 }
 
-// Obtener el usuario logueado desde el localStorage (clave "userData")
+// --- LÓGICA DE SESIÓN Y CARGA ---
 const usuarioSesion = JSON.parse(localStorage.getItem('userData') || '{}');
+
+console.log("Usuario en sesión actual:", usuarioSesion);
 
 if (!usuarioSesion.id) {
   window.location.href = '/src/pages/auth/login/login.html';
 }
 
-// Colores de badges según los estados del JSON de la cátedra
 const badgeColors: Record<string, string> = {
   PENDIENTE: 'bg-yellow-100 text-yellow-800 border-yellow-300',
   EN_PREPARACION: 'bg-blue-100 text-blue-800 border-blue-300',
@@ -57,11 +59,23 @@ const badgeColors: Record<string, string> = {
 
 async function cargarHistorialPedidos() {
   try {
+    // 1. Cargar los pedidos iniciales del archivo JSON de la cátedra
     const response = await fetch('/data/pedidos.json');
-    const pedidos: Pedido[] = await response.json();
+    const pedidosJson: Pedido[] = await response.json();
 
-    // Filtramos usando usuarioDto.id en lugar de idUsuario
-    const misPedidos = pedidos.filter(p => p.usuarioDto.id === usuarioSesion.id);
+    // 2. Cargar los nuevos pedidos creados por el usuario en localStorage
+    const pedidosLocales: Pedido[] = JSON.parse(localStorage.getItem('mis_pedidos_nuevos') || '[]');
+
+    // 3. Unir ambos arreglos en uno solo
+    const todosLosPedidos = [...pedidosJson, ...pedidosLocales];
+    console.log("Todos los pedidos disponibles:", todosLosPedidos);
+
+    // 4. Filtrar usando Number() para evitar problemas de tipos (string vs number)
+    const misPedidos = todosLosPedidos.filter(
+      p => Number(p.usuarioDto.id) === Number(usuarioSesion.id)
+    );
+    
+    console.log("Pedidos filtrados para este usuario:", misPedidos);
 
     const contenedor = document.getElementById('orders-container')!;
     const emptyState = document.getElementById('empty-state')!;
@@ -76,14 +90,13 @@ async function cargarHistorialPedidos() {
     contenedor.classList.remove('hidden');
     contenedor.innerHTML = '';
 
-    misPedidos.forEach(pedido => {
+    misPedidos.forEach((pedido: Pedido) => {
       const card = document.createElement('div');
       card.className = 'bg-white shadow rounded-lg p-6 border border-gray-200 cursor-pointer hover:shadow-md transition';
       
-      // Resumen de los primeros 3 productos usando los datos reales del JSON
       const primerosProductos = pedido.detalles.slice(0, 3);
       const resumenProductosHTML = primerosProductos
-        .map(d => `<li class="text-sm text-gray-600">• ${d.producto.nombre} (x${d.cantidad}) - $${d.subtotal.toFixed(2)}</li>`)
+        .map((d: DetallePedido) => `<li class="text-sm text-gray-600">• ${d.producto.nombre} (x${d.cantidad}) - $${d.subtotal.toFixed(2)}</li>`)
         .join('');
       
       const masProductos = pedido.detalles.length > 3 
@@ -125,7 +138,7 @@ function abrirModalDetalle(pedido: Pedido) {
   const modalContent = document.getElementById('modal-content')!;
 
   const detalleProductosHTML = pedido.detalles
-    .map(d => `
+    .map((d: DetallePedido) => `
       <div class="flex justify-between py-2 border-b border-gray-100 text-sm">
         <span>${d.producto.nombre} (Cant: ${d.cantidad})</span>
         <span class="font-semibold">$${d.subtotal.toFixed(2)}</span>

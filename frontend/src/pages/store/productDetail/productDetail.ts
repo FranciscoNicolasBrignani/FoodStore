@@ -1,7 +1,7 @@
 import { getCart, guardarCart } from "../../../utils/cart";
 import { navigate } from "../../../utils/navigate";
 
-//Capturar el ID del producto desde los parámetros de la URL
+// Capturar el ID del producto desde los parámetros de la URL
 const getProductIdFromUrl = (): string | null => {
   const params = new URLSearchParams(window.location.search);
   let id = params.get('id');
@@ -32,11 +32,17 @@ const cargarDetalleProducto = async (): Promise<void> => {
   }
 
   try {
-    //fetch a productos.json
-    const response = await fetch('/data/productos.json');
-    const productos = await response.json();
+    // 1. VERIFICAR LOCALSTORAGE PRIMERO (donde se guarda el stock descontado)
+    let productos = JSON.parse(localStorage.getItem('productos') || '[]');
 
-    // Filtrar el producto por ID
+    // 2. Si el localStorage está vacío, lo cargamos desde el JSON original y lo guardamos
+    if (productos.length === 0) {
+      const response = await fetch('/data/productos.json');
+      productos = await response.json();
+      localStorage.setItem('productos', JSON.stringify(productos));
+    }
+
+    // Filtrar el producto por ID utilizando la lista actualizada
     const producto = productos.find((p: any) => String(p.id) === String(productId));
 
     if (!producto) {
@@ -55,7 +61,7 @@ const cargarDetalleProducto = async (): Promise<void> => {
 
     const esValido = producto.disponible !== false && producto.stock > 0;
 
-    //Renderizar la información completa, imagen grande, stock y estado
+    // Renderizar la información completa, imagen grande, stock actualizado y estado
     container.innerHTML = `
       <button id="btn-volver" class="btn-volver">← Volver al Catálogo</button>
       <div class="detalle-wrapper">
@@ -75,15 +81,15 @@ const cargarDetalleProducto = async (): Promise<void> => {
             </span>
           </p>
 
-          <!-- 4. Selector de cantidad con validación -->
+          <!-- Selector de cantidad con validación basada en el stock actual -->
           <div class="cantidad-selector">
             <label for="input-cantidad">Cantidad:</label>
             <input type="number" id="input-cantidad" value="1" min="1" max="${producto.stock}" />
           </div>
 
-          <!-- 5. Botón Agregar al Carrito (deshabilitado si no disponible o stock 0) -->
+          <!-- Botón Agregar al Carrito (deshabilitado si no disponible o stock 0) -->
           <button id="btn-agregar" class="btn-agregar" ${!esValido ? 'disabled' : ''}>
-            ${esValido ? 'Agregar al Carrito' : 'No disponible'}
+            ${esValido ? 'Agregar al Carrito' : 'Sin stock'}
           </button>
 
           <!-- Mensaje de confirmación -->
