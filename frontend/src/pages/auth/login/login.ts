@@ -1,49 +1,45 @@
-import type { IUser, RUser } from "../../../type/IUser";
-import type { Rol } from "../../../type/Rol";
 import { navigate } from "../../../utils/navigate";
 import './login.css';
 
 const form = document.getElementById("form") as HTMLFormElement;
 const inputEmail = document.getElementById("email") as HTMLInputElement;
 const inputPassword = document.getElementById("password") as HTMLInputElement;
-const selectRol = document.getElementById("rol") as HTMLSelectElement;
 
-
-form.addEventListener("submit", (e: SubmitEvent) => {
+form.addEventListener("submit", async (e: SubmitEvent) => {
   e.preventDefault();
-  const valueEmail = inputEmail.value;
-  const valuePassword = inputPassword.value;
-  const valueRol = selectRol.value as Rol;
-  const storedUsers = localStorage.getItem("users");
-  const users: RUser[] = storedUsers ? JSON.parse(storedUsers) : [];
-
-  const user: IUser = {
-    email: valueEmail,
-    role: valueRol,
-    loggedIn: true,
-  };
   
-  const parseUser = JSON.stringify(user);
-  localStorage.setItem("userData", parseUser);
-  
-  const usuarioEncontrado = users.find(
-    (user) => user.email === valueEmail && user.password === valuePassword
-  );
+  const valueEmail = inputEmail.value.trim();
+  const valuePassword = inputPassword.value.trim();
 
-  if (usuarioEncontrado) {
-    const userData = JSON.stringify(usuarioEncontrado);
-    localStorage.setItem("userData", userData);
+  try {
+    
+    const response = await fetch('/data/usuarios.json');
+    const users: any[] = await response.json();
 
-    if (valueRol === "admin") {
-      navigate("/src/pages/admin/home/home.html"); 
-    } else if (valueRol === "client") {
-      navigate("/src/pages/store/home/home.html"); 
+   
+    const usuarioEncontrado = users.find(
+      (u) => u.mail === valueEmail && u.password === valuePassword
+    );
+
+    if (usuarioEncontrado) {
+      
+      const { password, ...usuarioSinPassword } = usuarioEncontrado;
+      localStorage.setItem("userData", JSON.stringify(usuarioSinPassword));
+
+      const rolUsuario = usuarioEncontrado.rol?.toLowerCase();
+
+      if (rolUsuario === "admin" || rolUsuario === "ADMIN") {
+        navigate("/src/pages/admin/adminHome/adminHome.html"); 
+      } else {
+        navigate("/src/pages/store/home/home.html"); 
+      }
+
+    } else {
+      alert("Email o contraseña incorrectos");
     }
 
-  } else {
-    alert("Usuario no encontrado");
+  } catch (error) {
+    console.error("Error al procesar el login:", error);
+    alert("Ocurrió un error al intentar iniciar sesión.");
   }
-  
-
 });
-
