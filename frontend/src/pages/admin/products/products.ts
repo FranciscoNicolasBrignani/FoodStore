@@ -18,7 +18,7 @@ interface Producto {
   categoriaId: number;
 }
 
-// 1. Validación de sesión ADMIN
+//Validación de sesión ADMIN
 const userData = JSON.parse(localStorage.getItem("userData") || "{}");
 const rolActual = (userData.rol || userData.role || "").toLowerCase();
 if (!userData.id || rolActual !== "admin") {
@@ -34,7 +34,7 @@ document.getElementById("btn-logout")?.addEventListener("click", () => {
 let productosState: Producto[] = [];
 let categoriasState: Categoria[] = [];
 
-// Referencias DOM
+//Referencias DOM
 const tbody = document.getElementById("tabla-productos") as HTMLTableSectionElement;
 const modal = document.getElementById("modal-producto") as HTMLDivElement;
 const modalTitulo = document.getElementById("modal-prod-titulo") as HTMLHeadingElement;
@@ -49,7 +49,7 @@ const selectCategoria = document.getElementById("prod-categoria") as HTMLSelectE
 const inputImagen = document.getElementById("prod-imagen") as HTMLInputElement;
 const checkDisponible = document.getElementById("prod-disponible") as HTMLInputElement;
 
-// 2. Inicializar datos desde localStorage o JSON
+//Inicializar datos desde localStorage o JSON
 async function inicializarProductos() {
   const prodsGuardados = localStorage.getItem("productos");
   const catsGuardadas = localStorage.getItem("admin_categorias");
@@ -94,7 +94,7 @@ function cargarSelectCategorias() {
     });
 }
 
-// 3. Renderizar tabla completa con nombre de categoría
+//Renderizar tabla completa con nombre de categoría
 function renderizarTabla() {
   tbody.innerHTML = "";
   const activos = productosState.filter((p) => !p.eliminado);
@@ -149,7 +149,7 @@ function renderizarTabla() {
   });
 }
 
-// 4. Modales
+//Modales
 function abrirModalCreacion() {
   cargarSelectCategorias();
   form.reset();
@@ -185,7 +185,7 @@ document.getElementById("btn-nuevo-producto")?.addEventListener("click", abrirMo
 document.getElementById("btn-cerrar-prod-modal")?.addEventListener("click", cerrarModal);
 document.getElementById("btn-cancelar-prod-modal")?.addEventListener("click", cerrarModal);
 
-// 5. Validaciones y Guardado (FHU-09: precio > 0, stock >= 0, categoría existente)
+//Validaciones y Guardado (FHU-09: precio > 0, stock >= 0, categoría existente)
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -243,7 +243,7 @@ form.addEventListener("submit", (e) => {
   cerrarModal();
 });
 
-// 6. Eliminación lógica
+//Eliminación lógica
 function eliminarProducto(id: number) {
   const prod = productosState.find((p) => p.id === id);
   if (!prod) return;

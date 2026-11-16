@@ -8,7 +8,7 @@ interface Categoria {
   eliminado: boolean;
 }
 
-// 1. Validación de sesión y rol ADMIN
+//Validación de sesión y rol ADMIN
 const userData = JSON.parse(localStorage.getItem("userData") || "{}");
 const rolActual = (userData.rol || userData.role || "").toLowerCase();
 if (!userData.id || rolActual !== "admin") {
@@ -23,7 +23,7 @@ document.getElementById("btn-logout")?.addEventListener("click", () => {
 
 let categoriasState: Categoria[] = [];
 
-// Referencias DOM
+//Referencias DOM
 const tbody = document.getElementById("tabla-categorias") as HTMLTableSectionElement;
 const modal = document.getElementById("modal-categoria") as HTMLDivElement;
 const modalTitulo = document.getElementById("modal-titulo") as HTMLHeadingElement;
@@ -33,7 +33,7 @@ const inputNombre = document.getElementById("cat-nombre") as HTMLInputElement;
 const inputDescripcion = document.getElementById("cat-descripcion") as HTMLTextAreaElement;
 const inputImagen = document.getElementById("cat-imagen") as HTMLInputElement;
 
-// 2. Cargar datos iniciales (localStorage o fetch a /data/categorias.json)
+//Cargar datos iniciales (localStorage o fetch a /data/categorias.json)
 async function inicializarCategorias() {
   const guardadas = localStorage.getItem("admin_categorias");
   if (guardadas) {
@@ -54,7 +54,7 @@ function guardarEnStorage() {
   localStorage.setItem("admin_categorias", JSON.stringify(categoriasState));
 }
 
-// 3. Renderizar tabla de categorías activas
+//Renderizar tabla de categorías activas
 function renderizarTabla() {
   tbody.innerHTML = "";
   const activas = categoriasState.filter((c) => !c.eliminado);
@@ -82,7 +82,7 @@ function renderizarTabla() {
     tbody.appendChild(tr);
   });
 
-  // Asignar eventos a botones dinámicos
+  //Asignar eventos a botones dinámicos
   document.querySelectorAll(".btn-editar").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const id = Number((e.currentTarget as HTMLButtonElement).dataset.id);
@@ -98,7 +98,7 @@ function renderizarTabla() {
   });
 }
 
-// 4. Manejo de Modales (Alta y Edición)
+//Manejo de Modales (Alta y Edición)
 function abrirModalCreacion() {
   form.reset();
   inputId.value = "";
@@ -126,7 +126,7 @@ document.getElementById("btn-nueva-categoria")?.addEventListener("click", abrirM
 document.getElementById("btn-cerrar-modal")?.addEventListener("click", cerrarModal);
 document.getElementById("btn-cancelar-modal")?.addEventListener("click", cerrarModal);
 
-// 5. Guardar (Crear o Actualizar)
+//Guardar (Crear o Actualizar)
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -142,12 +142,12 @@ form.addEventListener("submit", (e) => {
   const idEdicion = inputId.value ? Number(inputId.value) : null;
 
   if (idEdicion) {
-    // Actualizar existente
+    //Actualizar existente
     categoriasState = categoriasState.map((c) =>
       c.id === idEdicion ? { ...c, nombre, descripcion, imagen } : c
     );
   } else {
-    // Crear nueva con ID autoincremental
+    //Crear nueva con ID autoincremental
     const nuevoId = categoriasState.length > 0 ? Math.max(...categoriasState.map((c) => c.id)) + 1 : 1;
     categoriasState.push({
       id: nuevoId,
@@ -163,7 +163,7 @@ form.addEventListener("submit", (e) => {
   cerrarModal();
 });
 
-// 6. Eliminación lógica con confirmación
+//Eliminación lógica con confirmación
 function eliminarCategoria(id: number) {
   const cat = categoriasState.find((c) => c.id === id);
   if (!cat) return;

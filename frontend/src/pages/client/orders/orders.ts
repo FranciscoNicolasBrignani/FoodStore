@@ -1,4 +1,3 @@
-// --- INTERFACES OBLIGATORIAS ---
 interface Categoria {
   id: number;
   nombre: string;
@@ -41,7 +40,6 @@ interface Pedido {
   usuarioDto: UsuarioDto;
 }
 
-// --- LÓGICA DE SESIÓN Y CARGA ---
 const usuarioSesion = JSON.parse(localStorage.getItem('userData') || '{}');
 
 console.log("Usuario en sesión actual:", usuarioSesion);
@@ -59,18 +57,18 @@ const badgeColors: Record<string, string> = {
 
 async function cargarHistorialPedidos() {
   try {
-    // 1. Cargar los pedidos iniciales del archivo JSON de la cátedra
+    //Cargar los pedidos iniciales del archivo JSON de la cátedra
     const response = await fetch('/data/pedidos.json');
     const pedidosJson: Pedido[] = await response.json();
 
-    // 2. Cargar los nuevos pedidos creados por el usuario en localStorage
+    //Cargar los nuevos pedidos creados por el usuario en localStorage
     const pedidosLocales: Pedido[] = JSON.parse(localStorage.getItem('mis_pedidos_nuevos') || '[]');
 
-    // 3. Unir ambos arreglos en uno solo
+    //Unir ambos arreglos en uno solo
     const todosLosPedidos = [...pedidosJson, ...pedidosLocales];
     console.log("Todos los pedidos disponibles:", todosLosPedidos);
 
-    // 4. Filtrar usando Number() para evitar problemas de tipos (string vs number)
+    //Filtrar usando Number() para evitar problemas de tipos (string vs number)
     const misPedidos = todosLosPedidos.filter(
       p => Number(p.usuarioDto.id) === Number(usuarioSesion.id)
     );

@@ -1,6 +1,6 @@
 import { navigate } from "../../../utils/navigate";
 
-// 1. Validación de sesión ADMIN
+//Validación de sesión ADMIN
 const userData = JSON.parse(localStorage.getItem("userData") || "{}");
 const rolActual = (userData.rol || userData.role || "").toLowerCase();
 if (!userData.id || rolActual !== "admin") {
@@ -25,7 +25,7 @@ let usuariosState: any[] = [];
 let productosState: any[] = [];
 let pedidoSeleccionadoId: number | null = null;
 
-// Referencias DOM
+//Referencias DOM
 const ordersListContainer = document.getElementById("admin-orders-list") as HTMLDivElement;
 const filtroEstadoSelect = document.getElementById("filtro-estado") as HTMLSelectElement;
 const modal = document.getElementById("modal-pedido-admin") as HTMLDivElement;
@@ -33,7 +33,7 @@ const modalTitulo = document.getElementById("modal-pedido-titulo") as HTMLHeadin
 const modalBody = document.getElementById("modal-pedido-body") as HTMLDivElement;
 const selectNuevoEstado = document.getElementById("select-nuevo-estado") as HTMLSelectElement;
 
-// 2. Cargar todos los pedidos, usuarios y productos
+//Cargar todos los pedidos, usuarios y productos
 async function inicializarPedidosAdmin() {
   try {
     const [resPedidos, resUsuarios, resProductos] = await Promise.all([
@@ -46,11 +46,11 @@ async function inicializarPedidosAdmin() {
     usuariosState = await resUsuarios.json();
     const productosJson = await resProductos.json();
 
-    // Priorizar productos actualizados en localStorage si existen
+    //Priorizar productos actualizados en localStorage si existen
     const prodsLocal = JSON.parse(localStorage.getItem("productos") || "[]");
     productosState = prodsLocal.length > 0 ? prodsLocal : productosJson;
 
-    // Verificar si ya tenemos estado modificado en localStorage para el admin
+    //Verificar si ya tenemos estado modificado en localStorage para el admin
     const pedidosAdminGuardados = localStorage.getItem("admin_pedidos_estado");
     const pedidosNuevosCliente = JSON.parse(localStorage.getItem("mis_pedidos_nuevos") || "[]");
 
@@ -75,7 +75,6 @@ async function inicializarPedidosAdmin() {
 
 function guardarPedidosAdmin() {
   localStorage.setItem("admin_pedidos_estado", JSON.stringify(pedidosState));
-  // También sincronizar los estados con mis_pedidos_nuevos para que el cliente vea los cambios
   const idsJsonBase = [1, 2]; // IDs estáticos iniciales si aplica
   const pedidosDeClientes = pedidosState.filter((p) => p.usuarioDto || !idsJsonBase.includes(p.id));
   localStorage.setItem("mis_pedidos_nuevos", JSON.stringify(pedidosDeClientes));
@@ -89,7 +88,6 @@ function obtenerNombreCliente(pedido: any): string {
   return usuario ? `${usuario.nombre} ${usuario.apellido}` : "Cliente Desconocido";
 }
 
-// 3. Renderizar tarjetas de pedidos
 function renderizarListaPedidos(estadoFiltro: string) {
   ordersListContainer.innerHTML = "";
 
@@ -136,7 +134,7 @@ function renderizarListaPedidos(estadoFiltro: string) {
   });
 }
 
-// 4. Modal con detalle completo y cambio de estado (FHU-10)
+//Modal con detalle completo y cambio de estado (FHU-10)
 function abrirModalDetalle(pedido: any) {
   pedidoSeleccionadoId = pedido.id;
   modalTitulo.textContent = `Detalle del Pedido #${pedido.id}`;
@@ -145,7 +143,6 @@ function abrirModalDetalle(pedido: any) {
   const nombreCliente = obtenerNombreCliente(pedido);
   const usuario = pedido.usuarioDto || usuariosState.find((u) => Number(u.id) === Number(pedido.idUsuario)) || {};
 
-  // Mapear detalles (soporta tanto formato JSON plano idProducto como objeto producto anidado)
   const detallesHTML = pedido.detalles
     .map((d: any) => {
       const prodObj = d.producto || productosState.find((p) => Number(p.id) === Number(d.idProducto)) || { nombre: `Producto #${d.idProducto}` };
@@ -190,7 +187,7 @@ function cerrarModal() {
 
 document.getElementById("btn-cerrar-pedido-modal")?.addEventListener("click", cerrarModal);
 
-// 5. Actualizar estado del pedido
+//Actualizar estado del pedido
 document.getElementById("btn-actualizar-estado")?.addEventListener("click", () => {
   if (pedidoSeleccionadoId === null) return;
 
