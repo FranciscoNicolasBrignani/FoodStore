@@ -11,24 +11,43 @@ form.addEventListener("submit", async (e: SubmitEvent) => {
   const valueEmail = inputEmail.value.trim();
   const valuePassword = inputPassword.value.trim();
 
-  try {
-    
-    const response = await fetch('/data/usuarios.json');
-    const users: any[] = await response.json();
+  if (!valueEmail || !valuePassword) {
+    alert("Por favor, completa todos los campos.");
+    return;
+  }
 
-   
-    const usuarioEncontrado = users.find(
-      (u) => u.mail === valueEmail && u.password === valuePassword
+  try {
+    //Obtener usuarios estáticos del JSON
+    const response = await fetch('/data/usuarios.json');
+    const usersJson: any[] = await response.json();
+
+    //Obtener usuarios registrados dinámicamente en localStorage
+    const storedUsers = localStorage.getItem('users');
+    const usersLocal: any[] = storedUsers ? JSON.parse(storedUsers) : [];
+
+    //Unir ambos listados
+    const todosLosUsuarios = [...usersJson, ...usersLocal];
+
+    //Buscar coincidencia (soportando 'mail' o 'email')
+    const usuarioEncontrado = todosLosUsuarios.find(
+      (u) => (u.mail || u.email)?.toLowerCase() === valueEmail.toLowerCase() && u.password === valuePassword
     );
 
     if (usuarioEncontrado) {
-      
       const { password, ...usuarioSinPassword } = usuarioEncontrado;
-      localStorage.setItem("userData", JSON.stringify(usuarioSinPassword));
+      
+      //Normalizamos el rol en minúsculas para evitar errores de validación en adminHome
+      const rolNormalizado = (usuarioEncontrado.rol || usuarioEncontrado.role || 'usuario').toLowerCase();
+      
+      const sessionData = {
+        ...usuarioSinPassword,
+        role: rolNormalizado === 'admin' ? 'admin' : 'client',
+        loggedIn: true
+      };
 
-      const rolUsuario = usuarioEncontrado.rol?.toLowerCase();
+      localStorage.setItem("userData", JSON.stringify(sessionData));
 
-      if (rolUsuario === "admin" || rolUsuario === "ADMIN") {
+      if (rolNormalizado === "admin") {
         navigate("/src/pages/admin/adminHome/adminHome.html"); 
       } else {
         navigate("/src/pages/store/home/home.html"); 
