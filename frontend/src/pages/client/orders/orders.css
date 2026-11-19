@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap');
 
+:root {
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --bg-card: #ffffff;
+    --border-color: #e5e7eb;
+}
+
 *{
   margin: 0;
 }
@@ -7,7 +16,8 @@
 .logo{
   display: inline-flex;
   margin-left: 20px;
-  margin-right: -19px;
+  margin-right: -18px;
+  margin-top: -10px;
   height: 30px;
 }
 
@@ -18,7 +28,7 @@
 }
 
 .menu{
-  margin: 10px;
+  margin: 5px;
   text-decoration: none;
   color: black;
   font-size: 18px;
@@ -29,19 +39,20 @@
 }
 
 .titulo{
-  display: inline-flex;
+    display: inline-flex;
     font-family: 'Fredoka', sans-serif;
     color: rgb(22, 131, 33);
     text-transform: uppercase;
-    margin: 20px;
+    margin: 15px;
+    font-size: 30px;
+    font-weight: bold;
 }
 
-
 .btn-salir {
-  background-color: #10b981;
+  background-color: #28a745;
   color: white;
   cursor: pointer;
-  padding: 10px;
+  padding: 7px;
   border: none;
   border-radius: 20px;
   box-shadow: 1px solid black;
@@ -50,17 +61,6 @@
 .btn-salir:hover{
   cursor: pointer;
   background-color: #b4b4b4;
-}
-
-
-/* Variables y Estilos Base */
-:root {
-    --primary-color: #4f46e5;
-    --primary-hover: #4338ca;
-    --text-main: #1f2937;
-    --text-muted: #6b7280;
-    --bg-card: #ffffff;
-    --border-color: #e5e7eb;
 }
 
 .orders-container {
@@ -77,7 +77,6 @@
     margin-bottom: 1.5rem;
 }
 
-/* Alertas y Textos */
 .alert {
     padding: 1rem;
     border-radius: 0.5rem;
@@ -96,7 +95,6 @@
     display: none !important;
 }
 
-/* Grid de Tarjetas */
 .orders-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -159,7 +157,6 @@
     color: #111827;
 }
 
-/* Badges de Estado */
 .badge {
     padding: 0.25rem 0.75rem;
     border-radius: 9999px;
@@ -192,7 +189,6 @@
     border-color: #fecaca;
 }
 
-/* Modal Overlay */
 .modal-overlay {
     position: fixed;
     top: 0;

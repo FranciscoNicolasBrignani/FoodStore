@@ -1,29 +1,17 @@
-import type { ICartItem } from "../../../type/categoria";
 import '../home/home.css';
 import { navigate } from "../../../utils/navigate";
-import { getCart, guardarCart } from "../../../utils/cart";
+
 
 const btnLogout = document.getElementById('btn-salir');
 
-// 2. Evento para cerrar sesión
+//Evento para cerrar sesión
 btnLogout?.addEventListener('click', () => {
   localStorage.removeItem('userData');
   navigate('/src/pages/auth/login/login.html');
 });
 
-// Función botón agregar al carrito
-const agregarCart = (nuevoProducto: ICartItem): void => {
-  const itemsCart = getCart();
-  const productoExistente = itemsCart.find(item => item.id === nuevoProducto.id);
-  if (productoExistente) {
-    productoExistente.cantidad += 1;
-  } else {
-    itemsCart.push({ ...nuevoProducto, cantidad: nuevoProducto.cantidad || 1 });
-  }
-  guardarCart(itemsCart);
-};
 
-// Obtener categorías desde /data/categorias.json usando fetch()
+//Obtener categorías desde /data/categorias.json usando fetch()
 const GetCategories = async (): Promise<void> => {
   const container = document.getElementById("categorias-list");
   if (!container) return;
@@ -42,7 +30,7 @@ const GetCategories = async (): Promise<void> => {
     todas.className = "categorias";
     container.appendChild(todas);
 
-    // Evento para "Todos los productos"
+    //Evento para "Todos los productos"
     todas.addEventListener("click", (e) => {
       e.preventDefault();
       cargarProductos();
@@ -63,7 +51,7 @@ const GetCategories = async (): Promise<void> => {
         e.preventDefault();
 
         const productoFiltrado = PRODUCTS.filter((producto: any) => {
-          // Detecta cualquier posible nombre de la propiedad de categoría en el JSON
+          //Detecta cualquier posible nombre de la propiedad de categoría en el JSON
           const catRef = producto.categoriaId ?? producto.categoriald ?? producto.categoria_id ?? producto.categoria ?? producto.categorias;
           
           let coincide = false;
@@ -76,7 +64,7 @@ const GetCategories = async (): Promise<void> => {
             coincide = String(catRef) === String(cate.id);
           }
 
-          // Valida que esté disponible y no eliminado
+          //Valida que esté disponible y no eliminado
           const esActivo = producto.disponible !== false && producto.eliminado !== true;
 
           return coincide && esActivo;
@@ -90,13 +78,13 @@ const GetCategories = async (): Promise<void> => {
   }
 };
 
-// Cargar productos desde /data/productos.json usando fetch()
+//Cargar productos desde /data/productos.json usando fetch()
 const cargarProductos = async (): Promise<void> => {
   try {
     const response = await fetch('/data/productos.json');
     const PRODUCTS = await response.json();
     
-    // Filtrar solo los disponibles y no eliminados
+    //Filtrar solo los disponibles y no eliminados
     const productosValidos = PRODUCTS.filter((p: any) => p.disponible !== false && p.eliminado !== true);
     renderizarProductos(productosValidos, PRODUCTS);
   } catch (error) {
@@ -193,6 +181,6 @@ const renderizarProductos = (listaProductos: any[], PRODUCTS: any[]): void => {
     container.appendChild(card);
   });
 };
-// Inicialización de la vista
+//Inicialización de la vista
 cargarProductos();
 GetCategories();

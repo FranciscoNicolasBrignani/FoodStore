@@ -1,3 +1,5 @@
+import { navigate } from "../../../utils/navigate";
+
 interface Categoria {
   id: number;
   nombre: string;
@@ -47,6 +49,14 @@ console.log("Usuario en sesión actual:", usuarioSesion);
 if (!usuarioSesion.id) {
   window.location.href = '/src/pages/auth/login/login.html';
 }
+
+const btnLogout = document.getElementById('btn-salir');
+
+//Evento para cerrar sesión
+btnLogout?.addEventListener('click', () => {
+  localStorage.removeItem('userData');
+  navigate('/src/pages/auth/login/login.html');
+});
 
 const badgeColors: Record<string, string> = {
   PENDIENTE: 'bg-yellow-100 text-yellow-800 border-yellow-300',

@@ -18,7 +18,7 @@
 }
 
 .menu{
-  margin: 10px;
+  margin: 5px;
   text-decoration: none;
   color: black;
   font-size: 18px;
@@ -36,9 +36,8 @@
     margin: 20px;
 }
 
-
 .btn-salir {
-  background-color: #10b981;
+  background-color: #28a745;
   color: white;
   cursor: pointer;
   padding: 10px;
@@ -55,21 +54,19 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
-  margin: 0;
-  padding: 20px;
 }
 
 .product-detail-container {
   max-width: 900px;
   margin: 40px auto;
-  background: #fff;
+  background: #ffffff7d;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .btn-volver {
-  background: #6c757d;
+  background: #068438;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -109,7 +106,7 @@ body {
 
 .precio-detalle {
   font-size: 22px;
-  color: #e63946;
+  color: #0c662c;
   font-weight: bold;
 }
 
@@ -134,7 +131,7 @@ body {
 }
 
 .btn-agregar {
-  background: #ff6b35;
+  background: rgb(32, 134, 42);
   color: white;
   border: none;
   padding: 12px 20px;
@@ -158,3 +155,10 @@ body {
   text-align: center;
 }
 
+button:hover {
+  background-color: #059669;
+}
+
+button:active{
+  transform: scale(1.1) rotate(5deg);
+}

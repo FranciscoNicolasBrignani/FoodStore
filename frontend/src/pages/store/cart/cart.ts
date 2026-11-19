@@ -84,7 +84,7 @@ const cartCompras = () => {
                 <option value="TARJETA">Tarjeta</option>
                 <option value="TRANSFERENCIA">Transferencia</option>
             </select>
-            <button id="btn-confirmar-pedido" class="btn-confirmar" style="background-color: #28a745; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+            <button id="btn-confirmar-pedido" class="btn-confirmar">
                 Confirmar Pedido
             </button>
         </div>
@@ -99,7 +99,7 @@ const cartCompras = () => {
     });
 }
 
-// Función encargada de validar, descontar stock y generar el pedido
+//Función encargada de validar, descontar stock y generar el pedido
 function confirmarCompra(itemsCart: ICartItem[], totalPedido: number) {
     
     const usuarioSesion = JSON.parse(localStorage.getItem('userData') || '{}');
@@ -129,7 +129,7 @@ function confirmarCompra(itemsCart: ICartItem[], totalPedido: number) {
 
    
     const nuevoPedido = {
-        id: Date.now(), // ID único autogenerado
+        id: Date.now(), //ID único autogenerado
         fecha: new Date().toISOString().split('T')[0], 
         estado: "PENDIENTE",
         total: totalPedido,
@@ -158,15 +158,12 @@ function confirmarCompra(itemsCart: ICartItem[], totalPedido: number) {
         }
     };
 
-   
     const pedidosLocales = JSON.parse(localStorage.getItem('mis_pedidos_nuevos') || '[]');
     pedidosLocales.push(nuevoPedido);
     localStorage.setItem('mis_pedidos_nuevos', JSON.stringify(pedidosLocales));
 
     
     localStorage.removeItem('cart');
-
-    alert("¡Pedido confirmado con éxito!");
 
     
     navigate('/src/pages/client/orders/orders.html'); 

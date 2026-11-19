@@ -4,20 +4,41 @@
   margin: 0;
 }
 
-#cart{
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 10px;
-}
-
 .logo{
   display: inline-flex;
   margin-left: 20px;
   margin-right: -19px;
+  margin-top: -10px;
   height: 30px;
 }
 
+.container-menu{
+  display: inline-flex;
+  margin: 10px;
+  margin-left: 900px;
+}
+
+.menu{
+  margin: 5px;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+
+.menu:hover{
+  color: rgb(22, 131, 33);
+}
+
+.titulo{
+    display: inline-flex;
+    font-family: 'Fredoka', sans-serif;
+    color: rgb(22, 131, 33);
+    text-transform: uppercase;
+    margin: 20px;
+}
+
 .btn-salir {
-  background-color: #10b981;
+  background-color: #28a745; 
   color: white;
   cursor: pointer;
   padding: 10px;
@@ -31,13 +52,15 @@
   background-color: #b4b4b4;
 }
 
-.container-menu{
-  display: inline-flex;
-  margin: 20px;
-  margin-left: 900px;
+body {
+  font-family: Arial, sans-serif;
 }
 
-/*carrito*/
+#cart{
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 10px;
+}
+
 .carrito-vacio{
   margin: 20px;
 }
@@ -56,10 +79,9 @@
   background-color: #ffffff;
 }
 
-/*botones*/
 
 .btn-restar, .btn-sumar, .btn-eliminar {
-  background-color: #10b981;
+  background-color: #28a745;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -112,6 +134,20 @@ img {
 
 .precio-final{
   margin: 20px;
-  
+  color: #007651;
 }
 
+.btn-confirmar{
+ background-color: #28a745; 
+ color: white; 
+ padding: 10px; 
+ border: none; 
+ border-radius: 4px; 
+ cursor: pointer; 
+ font-weight: bold;
+}
+
+
+.btn-confirmar:active{
+  transform: scale(1.1) rotate(5deg);
+}
